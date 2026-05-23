@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        main {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Bus Management System</h1>
+        <nav>
+            <ul>
+                <li><a href="/buses">View Buses</a></li>
+                <li><a href="/routes">View Routes</a></li>
+                <li><a href="/schedules">View Schedules</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Buses</h2>
+            <table id="buses-table">
+                <thead>
+                    <tr>
+                        <th>Bus Number</th>
+                        <th>Capacity</th>
+                        <th>Registration Number</th>
+                        <th>Active</th>
+                    </tr>
+                </thead>
+                <tbody id="buses-list"></tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Routes</h2>
+            <table id="routes-table">
+                <thead>
+                    <tr>
+                        <th>Route Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody id="routes-list"></tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Schedules</h2>
+            <table id="schedules-table">
+                <thead>
+                    <tr>
+                        <th>Bus Number</th>
+                        <th>Route Name</th>
+                        <th>Day</th>
+                        <th>Departure Time</th>
+                        <th>Arrival Time</th>
+                    </tr>
+                </thead>
+                <tbody id="schedules-list"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Fetch buses, routes, and schedules from your server
+            fetchData('/buses', 'buses-list', formatBuses);
+            fetchData('/routes', 'routes-list', formatRoutes);
+            fetchData('/schedules', 'schedules-list', formatSchedules);
+        });
+
+        // Function to fetch data from a given endpoint and display it
+        function fetchData(url, tableId, formatFunction) {
+            fetch(url)
+                .then(response => response.json())
+                .then(data => formatFunction(data, tableId))
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        // Format and display buses data
+        function formatBuses(buses, tableId) {
+            const tableBody = document.getElementById(tableId);
+            buses.forEach(bus => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${bus.bus_number}</td>
+                    <td>${bus.capacity}</td>
+                    <td>${bus.registration_number}</td>
+                    <td>${bus.is_active ? 'Yes' : 'No'}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Format and display routes data
+        function formatRoutes(routes, tableId) {
+            const tableBody = document.getElementById(tableId);
+            routes.forEach(route => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${route.name}</td>
+                    <td>${route.description}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Format and display schedules data
+        function formatSchedules(schedules, tableId) {
+            const tableBody = document.getElementById(tableId);
+            schedules.forEach(schedule => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${schedule.bus_number}</td>
+                    <td>${schedule.route_name}</td>
+                    <td>${schedule.day_of_week}</td>
+                    <td>${schedule.departure_time}</td>
+                    <td>${schedule.arrival_time}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+    </script>
+</body>
+</html>

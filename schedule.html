@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bus Schedule - NMIMS Indore</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #f8f9fa;
+    }
+
+    nav {
+      background: #66d6d4;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+    }
+
+    .profile-icon {
+      font-size: 20px;
+      color: white;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .schedule-table {
+      width: 90%;
+      margin: 30px auto;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+    }
+
+    th {
+      background: #2c3e50;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background: #f2f2f2;
+    }
+
+    tr:hover {
+      background: #ddd;
+    }
+
+    ul {
+      padding-left: 15px;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <div>
+    <img src="nmims-university-logo-2.png" height="40">
+  </div>
+
+  <div>
+    <a href="#">Home</a>
+    <a href="#">Schedule</a>
+    <a href="#">Tracking</a>
+    <a href="#">Login</a>
+    <a href="#">Bus Pass</a>
+  </div>
+
+  <div class="profile-icon">
+    <i class="fas fa-user-circle"></i>
+  </div>
+</nav>
+
+<h1>Bus Schedule</h1>
+
+<table class="schedule-table">
+  <thead>
+    <tr>
+      <th>Bus Number</th>
+      <th>Driver Name</th>
+      <th>Driver Phone</th>
+      <th>Stops & Timings</th>
+    </tr>
+  </thead>
+
+  <tbody id="scheduleBody"></tbody>
+</table>
+
+<script>
+/* FAKE DATABASE (looks like SQL data) */
+const busData = [
+  {
+    bus_no: "NM01",
+    driver: "Ramesh Patel",
+    phone: "9876543210",
+    stops: [
+      "Rajwada - 7:30 AM",
+      "Vijay Nagar - 7:50 AM",
+      "Bhawarkua - 8:10 AM"
+    ]
+  },
+  {
+    bus_no: "NM02",
+    driver: "Suresh Yadav",
+    phone: "9123456780",
+    stops: [
+      "Palasia - 7:40 AM",
+      "Geeta Bhawan - 8:00 AM",
+      "Teen Imli - 8:20 AM"
+    ]
+  },
+  {
+    bus_no: "NM03",
+    driver: "Amit Sharma",
+    phone: "9988776655",
+    stops: [
+      "Airport Road - 7:20 AM",
+      "Bapat Square - 7:45 AM",
+      "MR10 - 8:05 AM"
+    ]
+  }
+];
+
+/* RENDER LIKE SQL FETCH */
+const tableBody = document.getElementById("scheduleBody");
+
+busData.forEach(bus => {
+  const row = `
+    <tr>
+      <td>${bus.bus_no}</td>
+      <td>${bus.driver}</td>
+      <td>${bus.phone}</td>
+      <td>
+        <ul>
+          ${bus.stops.map(stop => `<li>${stop}</li>`).join("")}
+        </ul>
+      </td>
+    </tr>
+  `;
+  tableBody.innerHTML += row;
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  background-color: #ffffff; /* White background */
+  color: #333; /* Dark text for contrast */
+}
+
+header {
+  background-color: #333; /* Dark header background */
+  padding: 20px 0;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.nav-links {
+  display: flex;
+  list-style-type: none;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #f0f0f0; /* Lighter shade for hover effect */
+  transform: scale(1.05);
+}
+
+.login-btn {
+  background-color: #444; /* Dark button for login */
+  padding: 10px 20px;
+  border-radius: 30px;
+  color: white;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #666; /* Lighter dark color on hover */
+}
+
+.hero {
+  height: 90vh;
+  background: url('bus-image.jpg') no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  padding: 0 20px;
+}
+
+.hero-content {
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay for readability */
+  padding: 40px 20px;
+  border-radius: 10px;
+  max-width: 600px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.cta-btn {
+  padding: 15px 30px;
+  background-color: #444; /* Dark CTA button */
+  color: white;
+  font-size: 1.2rem;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.cta-btn:hover {
+  background-color: #666; /* Lighter dark color on hover */
+}
+
+.features {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 50px 0;
+  text-align: center;
+}
+
+.feature {
+  background-color: #fff; /* White background for feature cards */
+  padding: 30px;
+  width: 30%;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.feature h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333; /* Dark text for feature headings */
+  margin-bottom: 15px;
+}
+
+.feature p {
+  font-size: 1.1rem;
+  color: #666; /* Gray text for feature descriptions */
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #333; /* Dark footer background */
+  color: white;
+}
+
+footer p {
+  font-size: 1rem;
+  font-weight: 500;
+}

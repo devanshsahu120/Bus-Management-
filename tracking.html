@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bus Tracking</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Load Leaflet CSS and JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <style>
+     body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    /* Navigation Bar */
+    nav {
+      background: #66d6d4;
+      color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #2c3e50;
+    }
+    .profile-icon {
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: #fff;
+      margin-right: 20px;
+    }
+    #map {
+      height: 500px;
+      width: 90%;
+      margin: 20px auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .bus-selector {
+      width: 90%;
+      margin: 20px auto;
+      text-align: center;
+    }
+    .bus-selector label {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #2c3e50;
+    }
+    .bus-selector select {
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <img src="nmims-university-logo-2.png" alt="NMIMS Indore Logo">
+    </div>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="tracking.html">Tracking</a>
+      <a href="login.html">Login</a>
+      <a href="bus-pass.html">Bus Pass</a>
+    </div>
+    <div class="profile-icon" onclick="toggleProfileDropdown()">
+      <i class="fas fa-user-circle"></i>
+    </div>
+    <!-- Profile Dropdown -->
+    <div class="profile-dropdown" id="profile-dropdown" style="display: none;">
+      <h3>Your Profile</h3>
+      <div id="profile-content">
+        <!-- Profile details or login prompt will be displayed here -->
+      </div>
+    </div>
+  </nav>
+  <h1>Real-Time Bus Tracking</h1>
+  <div class="bus-selector">
+    <label for="bus-select">Select Bus:</label>
+    <select id="bus-select">
+      <option value="101">Bus 101</option>
+      <option value="102">Bus 102</option>
+      <option value="103">Bus 103</option>
+    </select>
+  </div>
+  <div id="map"></div>
+  <script src="tracking.js"></script>
+</body>
+</html>

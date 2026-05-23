@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bus Pass Registration - NMIMS Indore</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    /* Navigation Bar */
+    nav {
+      background: #66d6d4;
+      color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #2c3e50;
+    }
+    .profile-icon {
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: #2c3e50;
+      margin-right: 20px;
+    }
+
+    /* Bus Pass Form */
+    .bus-pass-form {
+      width: 400px;
+      margin: 40px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .bus-pass-form h2 {
+      margin-top: 0;
+      color: #2c3e50;
+      text-align: center;
+    }
+    .bus-pass-form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #2c3e50;
+    }
+    .bus-pass-form input, .bus-pass-form select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    .bus-pass-form input[type="file"] {
+      padding: 5px;
+    }
+    .bus-pass-form button {
+      width: 100%;
+      padding: 12px;
+      background: #2c3e50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .bus-pass-form button:hover {
+      background: #1abc9c;
+    }
+    .note {
+      text-align: center;
+      margin-top: 20px;
+      color: #666;
+      font-size: 0.9rem;
+    }
+    .note strong {
+      color: #e74c3c;
+    }
+
+    /* Popup Styles */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1001;
+      text-align: center;
+    }
+    .popup p {
+      margin: 0 0 20px;
+      font-size: 1.1rem;
+      color: #2c3e50;
+    }
+    .popup button {
+      padding: 10px 20px;
+      background: #2c3e50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .popup button:hover {
+      background: #1abc9c;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <img src="nmims-university-logo-2.png" alt="NMIMS Indore Logo">
+    </div>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="tracking.html">Tracking</a>
+      <a href="login.html">Login</a>
+      <a href="bus-pass.html">Bus Pass</a>
+    </div>
+    <div class="profile-icon" onclick="toggleProfileDropdown()">
+      <i class="fas fa-user-circle"></i>
+    </div>
+    <!-- Profile Dropdown -->
+    <div class="profile-dropdown" id="profile-dropdown" style="display: none;">
+      <h3>Your Profile</h3>
+      <div id="profile-content">
+        <!-- Profile details or login prompt will be displayed here -->
+      </div>
+    </div>
+  </nav>
+
+  <h1>Bus Pass Registration</h1>
+  <div class="bus-pass-form">
+    <h2>Apply for a New Bus Pass</h2>
+    <form id="bus-pass-form">
+      <label for="sap-id">SAP ID:</label>
+      <input type="text" id="sap-id" name="sap-id" required>
+
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="year">Year:</label>
+      <select id="year" name="year" required>
+        <option value="">Select Year</option>
+        <option value="1">1st Year</option>
+        <option value="2">2nd Year</option>
+        <option value="3">3rd Year</option>
+        <option value="4">4th Year</option>
+      </select>
+
+      <label for="photo">Passport Size Photo:</label>
+      <input type="file" id="photo" name="photo" accept="image/*" required>
+
+      <button type="submit">Submit</button>
+    </form>
+    <div class="note">
+      <strong>Note:</strong> A charge of ₹500 will be applied for reprinting the bus pass.
+    </div>
+  </div>
+
+  <!-- Popup for successful submission -->
+  <div class="overlay" id="overlay"></div>
+  <div class="popup" id="popup">
+    <p>Your bus pass application has been submitted successfully! Please collect your bus pass from the admin department within <strong>3 working days</strong>.</p>
+    <button onclick="closePopup()">OK</button>
+  </div>
+
+  <script>
+    // ==================== Profile Dropdown ====================
+    function toggleProfileDropdown() {
+      const profileDropdown = document.getElementById("profile-dropdown");
+      if (profileDropdown.style.display === "block") {
+        profileDropdown.style.display = "none"; // Hide dropdown
+      } else {
+        profileDropdown.style.display = "block"; // Show dropdown
+        updateProfileContent(); // Update content dynamically
+      }
+    }
+
+    // Close the dropdown if clicked outside
+    window.onclick = function (event) {
+      const profileDropdown = document.getElementById("profile-dropdown");
+      const profileIcon = document.querySelector(".profile-icon");
+      if (event.target !== profileIcon && !profileIcon.contains(event.target)) {
+        profileDropdown.style.display = "none"; // Hide dropdown
+      }
+    };
+
+    // Function to update profile content
+    function updateProfileContent() {
+      const profileContent = document.getElementById("profile-content");
+      const user = JSON.parse(localStorage.getItem("user")) || null;
+
+      if (user) {
+        // User is logged in, display profile details
+        profileContent.innerHTML = `
+          <p><strong>Name:</strong> ${user.name}</p>
+          <p><strong>SAP ID:</strong> ${user.sapId}</p>
+          <p><strong>Bus Number:</strong> ${user.busNumber}</p>
+          <p><strong>Bus Stop:</strong> ${user.busStop}</p>
+          <p><strong>Bus Stop Timing:</strong> ${user.busStopTiming}</p>
+          <a href="login.html" onclick="logout()">Logout</a>
+        `;
+      } else {
+        // No user is logged in, display login prompt
+        profileContent.innerHTML = `
+          <p>Please <a href="login.html">login</a> to view your profile.</p>
+        `;
+      }
+    }
+
+    // Function to simulate logout
+    function logout() {
+      localStorage.removeItem("user");
+      alert("Logged out successfully!");
+      window.location.href = "index.html";
+    }
+
+    // ==================== Bus Pass Registration Form ====================
+    const busPassForm = document.getElementById("bus-pass-form");
+    if (busPassForm) {
+      busPassForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        // Get form data
+        const sapId = document.getElementById("sap-id").value;
+        const name = document.getElementById("name").value;
+        const year = document.getElementById("year").value;
+        const photo = document.getElementById("photo").files[0];
+
+        // Validate form data
+        if (!sapId || !name || !year || !photo) {
+          alert("Please fill out all fields.");
+          return;
+        }
+
+        // Create a FormData object
+        const formData = new FormData();
+        formData.append("sap-id", sapId);
+        formData.append("name", name);
+        formData.append("year", year);
+        formData.append("photo", photo);
+
+        // Simulate form submission (replace with actual API call)
+        console.log("Form Data:", {
+          sapId,
+          name,
+          year,
+          photo: photo.name,
+        });
+
+        // Show success pop-up
+        showPopup();
+
+        // Reset the form
+        busPassForm.reset();
+      });
+    }
+
+    // Function to show the pop-up
+    function showPopup() {
+      const popup = document.getElementById("popup");
+      const overlay = document.getElementById("overlay");
+      popup.style.display = "block";
+      overlay.style.display = "block";
+    }
+
+    // Function to close the pop-up
+    function closePopup() {
+      const popup = document.getElementById("popup");
+      const overlay = document.getElementById("overlay");
+      popup.style.display = "none";
+      overlay.style.display = "none";
+    }
+
+    // Initialize profile content on page load
+    if (document.getElementById("profile-content")) {
+      updateProfileContent();
+    }
+  </script>
+</body>
+</html>
